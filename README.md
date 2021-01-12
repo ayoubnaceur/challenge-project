@@ -15,7 +15,7 @@ composer install
 npm install
 ```
 
-Configure database connection (environment variables in`.env` file). (if the ` .env` file not existed make one using a ` .env.example` copy )
+Configure database connection (environment variables in`.env` file). (if the `.env` file not existed make one using a `.env.example` copy )
 
 ```
 DB_CONNECTION=mysql
@@ -49,8 +49,8 @@ Project should be ready now
 -   List Products
 -   Filter & sorting products
 
-    ``` bash
-	http://127.0.0.1:8000/
+    ```bash
+    http://127.0.0.1:8000/
     ```
 
 ### CLI interactions
@@ -95,7 +95,7 @@ Project should be ready now
     php artisan appdo:deleteCategory id
     ```
 
-    > id: the id of category (can be choosed from the web app)	
+    > id: the id of category (can be choosed from the web app)
 
 ## Application Features
 
