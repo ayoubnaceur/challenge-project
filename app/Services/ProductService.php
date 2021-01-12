@@ -63,6 +63,41 @@ class ProductService implements ProductServiceInterface
         return new ProductResource($p);
     }
 
+    public function createConsole($data)
+    {
+        $v = Validator::make($data, [
+            'name' => 'required|unique:products',
+            'description' => 'required',
+            'price' => 'required|numeric',
+            'categories.*' => 'integer',
+            'image' => 'required',
+        ]);
+
+        if ($v->fails()) {
+            throw new InvalidArgumentException($v->errors()->first());
+        }
+
+
+        // prepare data in to be inserted
+        $attributes = [
+            "name" => $data['name'],
+            "description" => $data['description'],
+            "price" => $data['price'],
+            "image" => $data['image']
+        ];
+
+        $p = $this->repository->create($attributes);
+
+        // make the repository equal a new repository with the new product data (preparing it to the be used in the attach method)
+        // the attach methode could be in the 'create' function of the ProductRepository (but i make a global Repository to do not repate the creation elequant code)
+        // we still have the ability to override the create function in the ProductRepository
+
+        // create category-product link
+        $this->repository->attach( $data['categories']);
+        
+        return new ProductResource($p);
+    }
+
     public function find($id)
     {
         $p = $this->repository->find($id);

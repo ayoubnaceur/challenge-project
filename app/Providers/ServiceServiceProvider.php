@@ -2,12 +2,13 @@
 
 namespace App\Providers;
 
-use App\Services\CategoryService;
+use Illuminate\Support\ServiceProvider;
+
 use App\Services\ProductService;
+use App\Services\CategoryService;
 use App\Services\ProductServiceInterface; 
 use App\Services\CategoryServiceInterface; 
 
-use Illuminate\Support\ServiceProvider;
 
 class ServiceServiceProvider extends ServiceProvider
 {
@@ -20,7 +21,6 @@ class ServiceServiceProvider extends ServiceProvider
     {
         $this->app->bind(ProductServiceInterface::class, ProductService::class);
         $this->app->bind(CategoryServiceInterface::class, CategoryService::class);
-  
     }
 
     /**
