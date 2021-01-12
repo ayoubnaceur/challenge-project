@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Illuminate\Support\Arr;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProductResource extends JsonResource
@@ -21,10 +22,10 @@ class ProductResource extends JsonResource
         $cnames = Arr::pluck($c, 'name');
 
         return [
-            'id' => $p->id,
-            'name' => $p->name,
-            'price' => $p->price,
-            'image' => $p->image,
+            'id' => $this->id,
+            'name' => $this->name,
+            'price' => $this->price,
+            'image' => $this->image,
             'categories' => ['names' => $cnames, 'ids' => $cids]
         ];
     }

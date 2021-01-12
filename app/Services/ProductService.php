@@ -32,7 +32,6 @@ class ProductService implements ProductServiceInterface
             'name' => 'required|unique:products',
             'description' => 'required',
             'price' => 'required|numeric',
-            'categories' => 'required',
             'categories.*' => 'integer|array',
             'image' => 'required|file|image',
         ]);
@@ -52,7 +51,7 @@ class ProductService implements ProductServiceInterface
             "image" => "storage/" . $imagePath
         ];
 
-        $this->repository->create($attributes);
+        $p = $this->repository->create($attributes);
 
         // make the repository equal a new repository with the new product data (preparing it to the be used in the attach method)
         // the attach methode could be in the 'create' function of the ProductRepository (but i make a global Repository to do not repate the creation elequant code)

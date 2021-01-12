@@ -28,8 +28,8 @@ class Repository implements RepositoryInterface
 
     public function create(array $attributes)
     {
-        $this->model = new Model();
-        return $this->model->create($attributes);
+        $this->model = $this->model->create($attributes);
+        return $this->model;
     }
     
 }
