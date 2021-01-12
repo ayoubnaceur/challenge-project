@@ -35613,6 +35613,9 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_2__
     fetchErrors: function fetchErrors(state, _ref4) {
       var errors = _ref4.errors;
       state.errors = errors.data;
+    },
+    clearErrors: function clearErrors(state) {
+      if (state.errors != null) state.errors = null;
     }
   },
   actions: {
@@ -35696,7 +35699,8 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_2__
             switch (_context3.prev = _context3.next) {
               case 0:
                 commit = _ref7.commit;
-                _context3.next = 3;
+                commit("clearErrors");
+                _context3.next = 4;
                 return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post("/api/products", data).then(function (response) {
                   commit("fetchProductSuccess", {
                     product: response.data,
@@ -35709,7 +35713,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_2__
                   });
                 });
 
-              case 3:
+              case 4:
               case "end":
                 return _context3.stop();
             }

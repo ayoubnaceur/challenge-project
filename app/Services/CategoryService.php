@@ -5,24 +5,29 @@ namespace App\Services;
 use Exception;
 use App\Models\Category;
 use InvalidArgumentException;
+use App\Http\Resources\ProductResource;
 use App\Repositories\CategoryRepository;
 use Illuminate\Support\Facades\Validator;
-use App\Services\CategoryServiceInterface;
 
-
-class CategoryService implements CategoryServiceInterface
+class CategoryService implements ServiceInterface
 {
 
-    protected $repository;
+    protected $categoryRepository;
 
-    public function __construct(CategoryRepository $repository)
+    public function __construct(CategoryRepository $categoryRepository)
     {
-        $this->repository = $repository;
+        $this->categoryRepository = $categoryRepository;
     }
 
     public function all()
     {
-        return $this->repository->all();
+        return $this->categoryRepository->all();
+    }
+
+    public function find($id)
+    {
+        $category = $this->categoryRepository->find($id);
+        return new CategoryResource($category);
     }
 
     public function create($data)
@@ -36,13 +41,13 @@ class CategoryService implements CategoryServiceInterface
             throw new InvalidArgumentException($validator->errors()->first());
         }
 
-        return $this->repository->create($data);
+        return $this->categoryRepository->create($data);
     }
 
     public function delete($id)
     {
-        $this->repository->find($id);
-        return $this->repository->delete();
+        $this->categoryRepository->find($id);
+        return $this->categoryRepository->delete();
     }
 
 }

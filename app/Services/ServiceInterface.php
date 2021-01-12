@@ -3,12 +3,9 @@
 namespace App\Services;
 
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Model;
 
-
-interface ProductServiceInterface
+interface ServiceInterface
 {
-
     public function all();
     public function create(Request $data);
     public function find($id);

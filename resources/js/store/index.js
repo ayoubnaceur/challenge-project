@@ -38,6 +38,11 @@ mutations: {
 	// error mutation
 	fetchErrors(state, { errors }) {
 		state.errors= errors.data;
+	},
+
+	clearErrors(state) {
+		if(state.errors != null)
+		state.errors = null;
 	}
 
 },
@@ -66,6 +71,7 @@ actions: {
 	// storing the data
 
 	async storeProduct({ commit }, data) {
+		commit("clearErrors")
 		await axios.post("/api/products", data).then(function (response) {
 			commit("fetchProductSuccess", { product: response.data, status: response.status })
 			console.log("Storing product... DONE")

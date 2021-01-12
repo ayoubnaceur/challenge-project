@@ -9,11 +9,10 @@ use App\Repositories\CategoryRepositoryInterface;
 
 class CategoryRepository extends Repository implements CategoryRepositoryInterface
 {
-    protected $model;
 
-    public function __construct(Category $model)
+    public function __construct(Category $categoryModel)
     {
-        $this->model = $model;
+        parent::__construct($categoryModel);
     }
 
     public function delete()
@@ -26,11 +25,11 @@ class CategoryRepository extends Repository implements CategoryRepositoryInterfa
         **     In CategorySedder the 'other' category is the first thing seeded (id = 1)
         ** [ ] we can drope them recurcivly
         */
-        $this->model->children()->update(['category_id' => 1 ]);
+        $this->categoryModel->children()->update(['category_id' => 1 ]);
         
         // delete category
-        $instance = $this->model;
-        $this->model->delete();
-        return $instance;
+        $result = $this->categoryModel;
+        $this->categoryModel->delete();
+        return $result;
     }
 }

@@ -6,8 +6,7 @@ use Illuminate\Support\ServiceProvider;
 
 use App\Services\ProductService;
 use App\Services\CategoryService;
-use App\Services\ProductServiceInterface; 
-use App\Services\CategoryServiceInterface; 
+use App\Services\ServiceInterface; 
 
 
 class ServiceServiceProvider extends ServiceProvider
@@ -19,8 +18,8 @@ class ServiceServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(ProductServiceInterface::class, ProductService::class);
-        $this->app->bind(CategoryServiceInterface::class, CategoryService::class);
+        $this->app->bind(ServiceInterface::class, ProductService::class);
+        $this->app->bind(ServiceInterface::class, CategoryService::class);
     }
 
     /**

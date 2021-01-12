@@ -10,28 +10,28 @@ use App\Repositories\ProductRepositoryInterface;
 class ProductRepository extends Repository implements ProductRepositoryInterface
 {
 
-    public function __construct(Product $model)
+    public function __construct(Product $productModel)
     {
-        parent::__construct($model);
+        parent::__construct($productModel);
     }
 
     public function attach(array $attributes)
     {
-        $this->model->categories()->attach($attributes);
+        $this->productModel->categories()->attach($attributes);
         return null;
     }
 
     public function detach()
     {
-        $this->model->categories()->detach();
+        $this->productModel->categories()->detach();
         return null;
     }
 
     public function delete()
     {
-        $instance = $this->model;
-        $this->model->delete();
-        return $instance;
+        $result = $this->productModel;
+        $this->productModel->delete();
+        return $result;
     }
 
 }

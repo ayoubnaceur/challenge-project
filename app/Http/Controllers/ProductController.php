@@ -9,22 +9,22 @@ use App\Http\Resources\ProductResource;
 
 class ProductController extends Controller
 {
-    protected $service;
+    protected $productService;
 
-    public function __construct(ProductService $service)
+    public function __construct(ProductService $productService)
     {
-        $this->service =  $service;
+        $this->productService =  $productService;
     }
 
     public function index()
     {
-        $result = $this->service->all();
+        $result = $this->productService->all();
         return ProductResource::collection($result);
     }
 
     public function store(Request $request)
     {
-        return $this->service->create($request);
+        return $this->productService->create($request);
     }
 
     public function show($id)
@@ -41,6 +41,6 @@ class ProductController extends Controller
 
     public function destroy($id)
     {   
-        return $this->service->delete($id);
+        return $this->productService->delete($id);
     }
 }

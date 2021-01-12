@@ -11,16 +11,16 @@ use App\Http\Resources\CategoryResource;
 class CategoryController extends Controller
 {
 
-    protected $service;
+    protected $categoryService;
 
-    public function __construct(CategoryService $service)
+    public function __construct(CategoryService $categoryService)
     {
-        $this->service = $service;
+        $this->categoryService = $categoryService;
     }
     
     public function index()
     {
-        $result = $this->service->all();
+        $result = $this->categoryService->all();
 
         // formating output as json api responds
         return CategoryResource::collection($result);
@@ -35,7 +35,7 @@ class CategoryController extends Controller
         ]);
         
         try {
-            $result = $this->service->create($data);
+            $result = $this->categoryService->create($data);
             return new CategoryResource($result);
         } catch (Exception $e) {
             return [
@@ -58,6 +58,6 @@ class CategoryController extends Controller
 
     public function destroy($id)
     {
-        return $this->service->delete($id);
+        return $this->categoryService->delete($id);
     }
 }

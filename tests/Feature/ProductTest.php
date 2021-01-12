@@ -15,7 +15,7 @@ class ProductTest extends TestCase
      *
      * @return void
      */
-    public function test_application_ready()
+    public function testApplicationReady()
     {
         $response = $this->get('route("any")');
         $response->assertStatus(200);
@@ -26,7 +26,7 @@ class ProductTest extends TestCase
      *
      * @return void
      */
-    public function test_create_new_product_success()
+    public function testCreateNewProductSuccess()
     {
         Storage::fake('avatars');
 
@@ -53,7 +53,7 @@ class ProductTest extends TestCase
      *
      * @return void
      */
-    public function test_create_new_product_failed()
+    public function testCreateNewProductFailed()
     {
         $response = $this->postJson(route('products.store'), [
             'name' => 'xxxxxxxxxxxxxx',

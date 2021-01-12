@@ -17,16 +17,16 @@ class ProductResource extends JsonResource
     {
         // return parent::toArray($request);
 
-        $c = $this->categories;
-        $cids = Arr::pluck($c, 'id');
-        $cnames = Arr::pluck($c, 'name');
+        $categories = $this->categories;
+        $categoriesIds = Arr::pluck($categories, 'id');
+        $categoriesNames = Arr::pluck($categories, 'name');
 
         return [
             'id' => $this->id,
             'name' => $this->name,
             'price' => $this->price,
             'image' => $this->image,
-            'categories' => ['names' => $cnames, 'ids' => $cids]
+            'categories' => ['names' => $categoriesNames, 'ids' => $categoriesIds]
         ];
     }
 }

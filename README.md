@@ -50,7 +50,7 @@ Project should be ready now
 -   Filter & sorting products
 
     ``` bash
-http://127.0.0.1:8000/
+	http://127.0.0.1:8000/
     ```
 
 ### CLI interactions
@@ -101,7 +101,7 @@ http://127.0.0.1:8000/
 
 ### Implementing design patterns
 
--   Repository and Service design patterns
+-   Repository and Service architectural patterns
 -   Full patterns integrations (Using Interfaces (Group work) & Inheritance(DRY, ..) )
 -   Use Laravel [API Resources](https://laravel.com/docs/8.x/eloquent-resources)
 
