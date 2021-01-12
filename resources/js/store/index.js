@@ -37,7 +37,7 @@ mutations: {
 
 	// error mutation
 	fetchErrors(state, { errors }) {
-		state.errors= errors.data;
+		state.errors= errors.data.errors;
 	},
 
 	clearErrors(state) {

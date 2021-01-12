@@ -35612,7 +35612,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_2__
     // error mutation
     fetchErrors: function fetchErrors(state, _ref4) {
       var errors = _ref4.errors;
-      state.errors = errors.data;
+      state.errors = errors.data.errors;
     },
     clearErrors: function clearErrors(state) {
       if (state.errors != null) state.errors = null;

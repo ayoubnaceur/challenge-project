@@ -8,7 +8,6 @@ use App\Services\ServiceInterface;
 use App\Repositories\ProductRepository;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\ProductResource;
-use Illuminate\Support\Facades\Validator;
 
 class ProductService implements ServiceInterface
 {
@@ -27,7 +26,7 @@ class ProductService implements ServiceInterface
 
     public function create(Request $data)
     {
-        $v = Validator::make($data->all(), [
+        $validated = $data->validate([
             'name' => 'required|unique:products',
             'description' => 'required',
             'price' => 'required|numeric',
@@ -35,9 +34,7 @@ class ProductService implements ServiceInterface
             'image' => 'required|file|image',
         ]);
 
-        if ($v->fails()) {
-            return response()->json($v->errors(),422);
-        }
+        // if data is good do
 
         // move the image to local `storage` directory or (non elequent)
         $imagePath = $data->image->store('products','public');
@@ -64,7 +61,7 @@ class ProductService implements ServiceInterface
 
     public function createConsole($data)
     {
-        $v = Validator::make($data, [
+        $validated = $data->validate([
             'name' => 'required|unique:products',
             'description' => 'required',
             'price' => 'required|numeric',
@@ -72,10 +69,7 @@ class ProductService implements ServiceInterface
             'image' => 'required',
         ]);
 
-        if ($v->fails()) {
-            throw new InvalidArgumentException($v->errors()->first());
-        }
-
+        // if data is good do
 
         // prepare data in to be inserted
         $attributes = [
